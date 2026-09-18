@@ -1,0 +1,42 @@
+# Fetch result
+
+Fetched: 2026-09-18 17:15 MDT
+
+## GET https://kwibbeler.github.io/
+status: 200
+content-type: text/html; charset=utf-8
+bytes: 3484
+
+## GET https://kwibbeler.github.io/phases.html
+status: 200
+content-type: text/html; charset=utf-8
+bytes: 1525
+
+## GET https://kwibbeler.github.io/weekly.html
+status: 200
+content-type: text/html; charset=utf-8
+bytes: 1446
+
+## GET https://kwibbeler.github.io/style.css
+status: 200
+content-type: text/css; charset=utf-8
+bytes: 8166
+
+## Start of index.html body
+```html
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tri Plan Builder</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="hero">
+    <h1>Tri Plan Builder</h1>
+    <p class="tagline">
+      An interactive triathlon training plan recommender. Pick a race distance,
+      how far out you are, and how you like your week shaped, and it drafts a
+```
