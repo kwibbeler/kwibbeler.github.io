@@ -3,21 +3,106 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hello</title>
+  <title>Tri Plan Builder</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <h1>Hello, world.</h1>
+  <header class="hero">
+    <h1>Tri Plan Builder</h1>
+    <p class="tagline">
+      An interactive triathlon training plan recommender. Pick a race distance,
+      how far out you are, and how you like your week shaped, and it drafts a
+      plan for you, from now through race week.
+    </p>
+  </header>
 
-  <p>
-    This page is live. That is the only thing it is here to prove.
-  </p>
+  <nav class="site-nav">
+    <a href="index.html" aria-current="page">Setup</a>
+    <a href="phases.html">Phases</a>
+    <a href="weekly.html">Weekly plan</a>
+  </nav>
 
-  <p>
-    Everything about it is yours to delete. Open Claude Code in this folder and
-    tell it what you actually want to build.
-  </p>
+  <main>
+    <section id="setup" aria-labelledby="setup-heading">
+      <h2 id="setup-heading">Tell it about your race</h2>
 
+      <div class="field-grid">
+        <label>
+          Race distance
+          <select id="distance">
+            <option value="sprint">Sprint</option>
+            <option value="olympic">Olympic</option>
+            <option value="70.3" selected>70.3 (Half Iron)</option>
+            <option value="full">Full (140.6)</option>
+          </select>
+        </label>
+
+        <label>
+          Weeks until race day
+          <select id="weeksOut">
+            <option value="12">12 weeks</option>
+            <option value="16">16 weeks</option>
+            <option value="20">20 weeks</option>
+            <option value="24" selected>24 weeks</option>
+            <option value="28">28 weeks</option>
+            <option value="32">32 weeks</option>
+            <option value="36">36 weeks</option>
+            <option value="40">40 weeks</option>
+            <option value="44">44 weeks</option>
+            <option value="48">48 weeks</option>
+            <option value="52">52 weeks (1 year)</option>
+          </select>
+        </label>
+
+        <label>
+          Experience level
+          <select id="experience">
+            <option value="beginner">Beginner</option>
+            <option value="intermediate" selected>Intermediate</option>
+            <option value="advanced">Advanced</option>
+          </select>
+        </label>
+
+        <label>
+          Days per week you want to train
+          <select id="daysPerWeek">
+            <option value="3">3 days</option>
+            <option value="4">4 days</option>
+            <option value="5" selected>5 days</option>
+            <option value="6">6 days</option>
+            <option value="7">7 days</option>
+          </select>
+        </label>
+      </div>
+
+      <h3>Shape your week</h3>
+      <p class="hint">
+        For each day, pick what you want to do, mark it "Any" to let the plan
+        decide (including whether that day ends up as rest), or mark it
+        "Rest" yourself. This same weekly shape carries through every week of
+        your plan, from now to race week.
+      </p>
+
+      <div class="day-grid" id="dayGrid">
+        <!-- One label/select pair per day, built by index.js -->
+      </div>
+
+      <p id="validationMessage" class="validation" role="alert" hidden></p>
+
+      <button id="generateBtn" type="button">Build my plan</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      Built for Project 1 in CSCI 498E/598E, Coding with AI Agents. Not a
+      substitute for a coach, and always leave room to adjust for how you
+      actually feel.
+    </p>
+  </footer>
+
+  <script src="plan-data.js"></script>
+  <script src="index.js"></script>
 </body>
 </html>

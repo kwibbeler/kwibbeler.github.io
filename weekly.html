@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tri Plan Builder - Weekly Plan</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="hero">
+    <h1>Tri Plan Builder</h1>
+    <p class="tagline">Pick a week to see exactly what it looks like.</p>
+  </header>
+
+  <nav class="site-nav">
+    <a href="index.html">Setup</a>
+    <a href="phases.html">Phases</a>
+    <a href="weekly.html" aria-current="page">Weekly plan</a>
+  </nav>
+
+  <main>
+    <div id="noPlan" class="notice" hidden>
+      <p>There's no plan set up yet.</p>
+      <p><a href="index.html">Go to Setup</a> to pick a race distance and timeframe first.</p>
+    </div>
+
+    <section id="weekPicker" hidden>
+      <label for="weekSelect">
+        Week
+        <select id="weekSelect"></select>
+      </label>
+    </section>
+
+    <section id="output" hidden aria-labelledby="output-heading">
+      <h2 id="output-heading">Your week</h2>
+      <div id="overview" class="overview"></div>
+      <div id="weeklySchedule" class="week"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      Built for Project 1 in CSCI 498E/598E, Coding with AI Agents. Not a
+      substitute for a coach, and always leave room to adjust for how you
+      actually feel.
+    </p>
+  </footer>
+
+  <script src="plan-data.js"></script>
+  <script src="weekly.js"></script>
+</body>
+</html>

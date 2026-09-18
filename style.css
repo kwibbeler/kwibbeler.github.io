@@ -1,34 +1,407 @@
-/* A deliberately small starting point.
-   It exists to prove one thing: this file is loading.
-   If you can see spacing and a readable line length, the path in index.html works.
+/* Tri Plan Builder - theme
+   Clean, minimal, navy-and-one-accent palette, with light and dark variants.
+   Disciplines (swim/bike/run/strength) and phases (base/build/peak/taper)
+   each get a quiet, consistent color so the weekly and phases views are
+   easy to scan without the page turning into a rainbow. */
 
-   Delete all of it whenever you want. */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 
 :root {
-  /* Makes the page follow the reader's light or dark mode setting, for free. */
   color-scheme: light dark;
+
+  /* --- Light palette (default) --- */
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --surface-raised: #ffffff;
+  --text: #101826;
+  --text-muted: #5b6675;
+  --border: #e1e5eb;
+  --accent: #d9552c;
+  --accent-contrast: #ffffff;
+  --shadow: 0 1px 2px rgba(16, 24, 38, 0.04), 0 8px 24px rgba(16, 24, 38, 0.06);
+
+  --c-swim: #2f6fed;
+  --c-bike: #d9781f;
+  --c-run: #2e9e5b;
+  --c-strength: #8452c9;
+
+  --c-base: #2f6fed;
+  --c-build: #d9781f;
+  --c-peak: #d9432c;
+  --c-taper: #1f9a82;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b1320;
+    --surface: #101b2c;
+    --surface-raised: #142238;
+    --text: #eef2f7;
+    --text-muted: #93a2b5;
+    --border: #223451;
+    --accent: #ff8657;
+    --accent-contrast: #10151f;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 28px rgba(0, 0, 0, 0.35);
+
+    --c-swim: #5b93ff;
+    --c-bike: #f0a248;
+    --c-run: #4cc082;
+    --c-strength: #b083ec;
+
+    --c-base: #5b93ff;
+    --c-build: #f0a248;
+    --c-peak: #ff7a63;
+    --c-taper: #38c4a8;
+  }
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-
-  /* 65ch caps the line at about 65 characters. Long lines are genuinely hard
-     to read, and this single rule does more for legibility than anything else
-     in this file. */
-  max-width: 65ch;
-
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  max-width: 62rem;
   margin: 0 auto;
-  padding: 4rem 1.5rem;
+  padding: 3rem 1.5rem 5rem;
   line-height: 1.6;
-  font-size: 1.125rem;
+  font-size: 1.0625rem;
+}
+
+a {
+  color: var(--accent);
+}
+
+.hero {
+  margin-bottom: 1.5rem;
 }
 
 h1 {
-  font-size: 3rem;
-  line-height: 1.1;
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  margin-bottom: 0.75rem;
+  background: linear-gradient(90deg, var(--text) 55%, var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.tagline {
+  max-width: 65ch;
+  color: var(--text-muted);
+  font-size: 1.0625rem;
+}
+
+h2 {
+  font-size: 1.375rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 1rem;
+}
+
+h3 {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  margin: 2rem 0 0.5rem;
+}
+
+.hint {
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+/* --- Nav --- */
+.site-nav {
+  display: flex;
+  gap: 0.35rem;
+  margin-bottom: 2.5rem;
+  padding: 0.35rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  width: fit-content;
+}
+
+.site-nav a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.site-nav a:hover {
+  color: var(--text);
+  background: var(--bg);
+}
+
+.site-nav a[aria-current="page"] {
+  color: var(--accent-contrast);
+  background: var(--accent);
+}
+
+/* --- Setup form --- */
+#setup {
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 1.75rem;
+  margin-bottom: 2.5rem;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.field-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 1rem;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+select {
+  font: inherit;
+  font-weight: 500;
+  color: var(--text);
+  padding: 0.6rem 0.7rem;
+  border-radius: 0.6rem;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  transition: border-color 0.15s ease;
+}
+
+select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.day-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+  gap: 1rem;
+}
+
+.validation {
+  margin-top: 1rem;
+  padding: 0.85rem 1.1rem;
+  border-radius: 0.6rem;
+  background: color-mix(in srgb, var(--c-peak) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--c-peak) 35%, transparent);
+  color: var(--text);
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+
+button {
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  margin-top: 1.5rem;
+  padding: 0.8rem 1.6rem;
+  border-radius: 0.6rem;
+  border: none;
+  background: var(--accent);
+  color: var(--accent-contrast);
+  cursor: pointer;
+  transition: transform 0.1s ease, filter 0.15s ease;
+}
+
+button:hover {
+  filter: brightness(1.08);
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+/* --- Overview card --- */
+.overview {
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 1.5rem;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.overview h3 {
+  margin-top: 0;
+}
+
+.overview dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem 1.25rem;
+  margin: 0;
+}
+
+.overview dt {
+  font-weight: 600;
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+}
+
+.overview dd {
+  margin: 0;
+  font-size: 0.9375rem;
+}
+
+/* --- Weekly / phase cards --- */
+.week,
+.phase-breakdown {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1rem;
+}
+
+.day-card {
+  border: 1px solid var(--border);
+  border-radius: 0.9rem;
+  padding: 1.1rem 1.25rem;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  border-left: 3px solid var(--border);
+}
+
+.day-card.rest {
+  opacity: 0.6;
+  box-shadow: none;
+}
+
+.day-card h4 {
+  margin: 0 0 0.35rem;
+  font-size: 1.0625rem;
+  font-weight: 700;
+}
+
+.day-card .discipline {
+  display: inline-block;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  margin-bottom: 0.6rem;
+  background: color-mix(in srgb, var(--accent) 16%, transparent);
+  color: var(--accent);
+}
+
+.day-card p {
+  margin: 0.35rem 0;
+  font-size: 0.9375rem;
+  color: var(--text);
+}
+
+.day-card .duration {
+  font-weight: 600;
+}
+
+/* Discipline color-coding, used on weekly day cards. */
+.day-card.disc-swim {
+  border-left-color: var(--c-swim);
+}
+.day-card.disc-swim .discipline {
+  background: color-mix(in srgb, var(--c-swim) 16%, transparent);
+  color: var(--c-swim);
+}
+
+.day-card.disc-bike {
+  border-left-color: var(--c-bike);
+}
+.day-card.disc-bike .discipline {
+  background: color-mix(in srgb, var(--c-bike) 16%, transparent);
+  color: var(--c-bike);
+}
+
+.day-card.disc-run {
+  border-left-color: var(--c-run);
+}
+.day-card.disc-run .discipline {
+  background: color-mix(in srgb, var(--c-run) 16%, transparent);
+  color: var(--c-run);
+}
+
+.day-card.disc-strength {
+  border-left-color: var(--c-strength);
+}
+.day-card.disc-strength .discipline {
+  background: color-mix(in srgb, var(--c-strength) 16%, transparent);
+  color: var(--c-strength);
+}
+
+/* Phase color-coding, used on the phases page. */
+.day-card.phase-base {
+  border-left-color: var(--c-base);
+}
+.day-card.phase-base .discipline {
+  background: color-mix(in srgb, var(--c-base) 16%, transparent);
+  color: var(--c-base);
+}
+
+.day-card.phase-build {
+  border-left-color: var(--c-build);
+}
+.day-card.phase-build .discipline {
+  background: color-mix(in srgb, var(--c-build) 16%, transparent);
+  color: var(--c-build);
+}
+
+.day-card.phase-peak {
+  border-left-color: var(--c-peak);
+}
+.day-card.phase-peak .discipline {
+  background: color-mix(in srgb, var(--c-peak) 16%, transparent);
+  color: var(--c-peak);
+}
+
+.day-card.phase-taper {
+  border-left-color: var(--c-taper);
+}
+.day-card.phase-taper .discipline {
+  background: color-mix(in srgb, var(--c-taper) 16%, transparent);
+  color: var(--c-taper);
+}
+
+/* --- Weekly page's week picker --- */
+#weekPicker {
   margin-bottom: 1.5rem;
 }
 
-p {
-  margin-bottom: 1.5rem;
+#weekPicker label {
+  max-width: 20rem;
+}
+
+/* --- Notices (no plan yet) --- */
+.notice {
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 1.75rem;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.notice p:first-child {
+  font-weight: 600;
+  margin-top: 0;
+}
+
+footer {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.875rem;
+  color: var(--text-muted);
 }

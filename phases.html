@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tri Plan Builder - Phases</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="hero">
+    <h1>Tri Plan Builder</h1>
+    <p class="tagline">The four phases, and how your race timeline breaks down across them.</p>
+  </header>
+
+  <nav class="site-nav">
+    <a href="index.html">Setup</a>
+    <a href="phases.html" aria-current="page">Phases</a>
+    <a href="weekly.html">Weekly plan</a>
+  </nav>
+
+  <main>
+    <div id="noPlan" class="notice" hidden>
+      <p>There's no plan set up yet.</p>
+      <p><a href="index.html">Go to Setup</a> to pick a race distance and timeframe first.</p>
+    </div>
+
+    <section id="planSummary" class="overview" hidden></section>
+
+    <section id="phaseBreakdown" aria-labelledby="breakdown-heading" hidden>
+      <h2 id="breakdown-heading">Your timeline</h2>
+      <div id="breakdownList" class="phase-breakdown"></div>
+    </section>
+
+    <section aria-labelledby="reference-heading">
+      <h2 id="reference-heading">The four phases</h2>
+      <div id="phaseReference" class="week"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      Built for Project 1 in CSCI 498E/598E, Coding with AI Agents. Not a
+      substitute for a coach, and always leave room to adjust for how you
+      actually feel.
+    </p>
+  </footer>
+
+  <script src="plan-data.js"></script>
+  <script src="phases.js"></script>
+</body>
+</html>
